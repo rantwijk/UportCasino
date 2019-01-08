@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "./node_modules/.bin/parcel build index.html"
+    "build": "./node_modules/.bin/parcel build index.html",
+    "build:npm": "npm run build:es5 && npm run build:dist && npm run build:dist:prod",
+    "build:es5": "./node_modules/.bin/babel src -d lib",
+    "build:dist": "./node_modules/.bin/webpack --config webpack.config.js --mode=development",
+    "build:dist:prod": "./node_modules/.bin/webpack --config webpack.config.js --mode=production --output-filename uport-connect.min.js"
   },
   "engines": {
     "node": "8.12.0"
@@ -19,6 +23,10 @@
     "qrcode-terminal": "^0.12.0",
     "th": "^0.1.1",
     "uport-connect": "^0.7.8",
-    "vue": "^2.5.13"
+    "vue": "^2.5.13",
+    "webpack": "^4.27.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
   }
 }
